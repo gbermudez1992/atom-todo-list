@@ -1,0 +1,10 @@
+<div class="login-container">
+  <h2>Todo Login</h2>
+  <form (submit)="onSubmit($event)">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" [(ngModel)]="email" placeholder="Enter your email" required />
+    </div>
+    <button type="submit" [disabled]="!email.trim()">Login</button>
+  </form>
+</div>
