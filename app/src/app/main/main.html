@@ -1,0 +1,54 @@
+<div class="main-container">
+  <header>
+    <h2>Todo List</h2>
+    <div class="user-info">
+      <span>Logged in as: {{ auth.currentUser() }}</span>
+      <button (click)="logout()" class="logout-btn">Logout</button>
+    </div>
+  </header>
+
+  <section class="task-input">
+    <div class="input-group">
+      <input type="text" [(ngModel)]="newTaskTitle" (keyup.enter)="addTask()" placeholder="Task title" />
+      <input type="text" [(ngModel)]="newTaskDescription" (keyup.enter)="addTask()"
+        placeholder="Task description (optional)" class="input-description" />
+    </div>
+    <button (click)="addTask()" [disabled]="!newTaskTitle.trim()">Add</button>
+  </section>
+
+  <ul class="task-list">
+    @for (task of taskService.tasks(); track task.id) {
+    <li>
+      <div class="task-content">
+        <input type="checkbox" [checked]="task.completed" (change)="toggleTask(task.id)" />
+        @if (editingTaskId === task.id) {
+        <div class="edit-group">
+          <input type="text" [(ngModel)]="editTaskTitle" (keyup.enter)="saveEdit()" (keyup.escape)="cancelEdit()"
+            class="edit-input" autofocus placeholder="Title" />
+          <input type="text" [(ngModel)]="editTaskDescription" (keyup.enter)="saveEdit()" (keyup.escape)="cancelEdit()"
+            class="edit-input" placeholder="Description" />
+        </div>
+        } @else {
+        <div [class.completed]="task.completed" (dblclick)="startEdit(task)" class="task-text">
+          <span class="task-title">{{ task.title }}</span>
+          @if (task.description) {
+          <span class="task-desc">{{ task.description }}</span>
+          }
+        </div>
+        }
+      </div>
+      <div class="task-actions">
+        @if (editingTaskId === task.id) {
+        <button class="small-btn save" (click)="saveEdit()">Save</button>
+        <button class="small-btn cancel" (click)="cancelEdit()">Cancel</button>
+        } @else {
+        <button class="small-btn edit" (click)="startEdit(task)">Edit</button>
+        <button class="small-btn delete" (click)="deleteTask(task.id)">Delete</button>
+        }
+      </div>
+    </li>
+    } @empty {
+    <li class="empty-state">No tasks yet. Add one above!</li>
+    }
+  </ul>
+</div>
