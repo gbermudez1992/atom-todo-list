@@ -2,7 +2,7 @@
   <header>
     <h2>Todo List</h2>
     <div class="user-info">
-      <span>Logged in as: {{ auth.currentUser() }}</span>
+      <span>Logged in as: {{ auth.currentUser()?.email }}</span>
       <button (click)="logout()" class="logout-btn">Logout</button>
     </div>
   </header>

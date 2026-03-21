@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { Task, Todo } from '../services/task';
   templateUrl: './main.html',
   styleUrls: ['./main.css']
 })
-export class Main {
+export class Main implements OnInit {
   auth = inject(Auth);
   taskService = inject(Task);
   router = inject(Router);
@@ -22,6 +22,10 @@ export class Main {
   editingTaskId: string | null = null;
   editTaskTitle = '';
   editTaskDescription = '';
+
+  ngOnInit() {
+    this.taskService.loadTasks();
+  }
 
   logout() {
     this.auth.logout();
