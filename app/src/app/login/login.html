@@ -1,6 +1,6 @@
 <div class="login-container">
   <h2>Todo Login</h2>
-  <form (submit)="onSubmit($event)">
+  <form (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="email">Email</label>
       <input type="email" id="email" name="email" [(ngModel)]="email" placeholder="Enter your email" required />
@@ -8,3 +8,11 @@
     <button type="submit" [disabled]="!email.trim()">Login</button>
   </form>
 </div>
+
+@if (showRegisterModal) {
+  <app-register-modal 
+    [email]="email" 
+    (register)="onRegister($event)" 
+    (cancel)="onCancelRegister()">
+  </app-register-modal>
+}
