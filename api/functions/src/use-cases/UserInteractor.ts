@@ -25,7 +25,7 @@ export class UserInteractor {
    * @param {string} email - The user's email address.
    * @param {string} [firstName] - The user's first name.
    * @param {string} [lastName] - The user's last name.
-   * @return {Promise<{ user: any; token: string; isNew: boolean }>}
+   * @return {Promise<any>}
    * The user, token, and whether the user is new.
    */
   async loginOrRegister(email: string, firstName?: string, lastName?: string) {
@@ -56,7 +56,7 @@ export class UserInteractor {
    * Logs in a user.
    *
    * @param {string} email - The user's email address.
-   * @return {Promise<{ user: User; token: string }>} The user and token.
+   * @return {Promise<any>} The user and token.
    */
   async login(email: string) {
     if (!email) throw new Error("Email is required");

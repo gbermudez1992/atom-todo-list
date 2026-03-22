@@ -4,6 +4,7 @@ import { TaskInteractor } from "../../use-cases/TaskInteractor";
 import { FirestoreTaskRepository } from "../../infrastructure/database/FirestoreTaskRepository";
 import { authenticateToken } from "../middlewares/authMiddleware";
 
+// eslint-disable-next-line new-cap
 const router = Router();
 
 const taskRepository = new FirestoreTaskRepository();
