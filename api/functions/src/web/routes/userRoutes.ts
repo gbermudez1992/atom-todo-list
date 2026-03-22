@@ -1,9 +1,12 @@
 import { Router } from "express";
 import { UserController } from "../controllers/UserController";
 import { UserInteractor } from "../../use-cases/UserInteractor";
-import { FirestoreUserRepository } from "../../infrastructure/database/FirestoreUserRepository";
+import {
+  FirestoreUserRepository,
+} from "../../infrastructure/database/FirestoreUserRepository";
 import { JwtTokenService } from "../../infrastructure/services/JwtTokenService";
 
+// eslint-disable-next-line new-cap
 const router = Router();
 
 const userRepository = new FirestoreUserRepository();

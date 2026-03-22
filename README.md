@@ -40,3 +40,38 @@ La interfaz del cliente está construida usando metodologías modernas de **Angu
 - Firebase (Cloud Functions, Admin SDK)
 - Cloud Firestore DB
 - JWT (JSON Web Tokens)
+
+## 🚀 Ejecución Local
+
+Sigue estos pasos para levantar la aplicación en tu entorno de desarrollo local:
+
+1. **Inicia sesión en Firebase**:
+   Asegúrate de estar autenticado en la CLI de Firebase.
+   ```bash
+   firebase login
+   ```
+
+2. **Emula las Cloud Functions**:
+   Navega al directorio del backend y levanta los emuladores locales de Firebase.
+   ```bash
+   cd api/functions
+   npm run serve
+   ```
+   Esto compilará el código TypeScript y ejecutará las funciones localmente (la terminal mostrará una URL similar a `http://127.0.0.1:5001/...`).
+
+3. **Configura el entorno de Angular**:
+   Copia la URL local del emulador de funciones generada en el paso anterior y reemplázala en el archivo `web/src/environments/environment.development.ts`:
+   ```typescript
+   export const environment = {
+     production: false,
+     apiUrl: 'http://127.0.0.1:5001/tu-proyecto/us-central1/api' // Reemplazar con la URL del emulador
+   };
+   ```
+
+4. **Inicia la aplicación frontend**:
+   En una nueva terminal, levanta el servidor de desarrollo de Angular.
+   ```bash
+   cd web
+   npm start # O ng serve
+   ```
+   La aplicación se abrirá en `http://localhost:4200/`.
