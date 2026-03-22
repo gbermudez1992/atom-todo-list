@@ -1,7 +1,7 @@
 import { Injectable, signal, inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Auth } from './auth';
+import { HttpRequest } from './httpRequest';
 
 export interface Todo {
   id: string;
@@ -14,22 +14,15 @@ export interface Todo {
   providedIn: 'root',
 })
 export class Task {
-  private http = inject(HttpClient);
+  private httpRequest = inject(HttpRequest);
   private auth = inject(Auth);
 
   readonly tasks = signal<Todo[]>([]);
 
-  private get headers() {
-    const token = this.auth.getToken();
-    return new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-  }
-
   loadTasks() {
     if (!this.auth.isLoggedIn()) return;
 
-    this.http.get<Todo[]>(`${environment.apiUrl}/tasks`, { headers: this.headers }).subscribe({
+    this.httpRequest.get<Todo[]>(`${environment.apiUrl}/tasks`).subscribe({
       next: (tasks) => this.tasks.set(tasks),
       error: (err) => console.error('Failed to load tasks', err),
     });
@@ -42,8 +35,8 @@ export class Task {
       completed: false,
     };
 
-    this.http
-      .post<Todo>(`${environment.apiUrl}/tasks`, payload, { headers: this.headers })
+    this.httpRequest
+      .post<Todo>(`${environment.apiUrl}/tasks`, payload)
       .subscribe({
         next: (newTask) => this.tasks.update((t) => [...t, newTask]),
         error: (err) => console.error('Failed to add task', err),
@@ -58,8 +51,8 @@ export class Task {
 
     this.tasks.update((tasks) => tasks.map((t) => (t.id === id ? { ...t, ...payload } : t)));
 
-    this.http
-      .put<Todo>(`${environment.apiUrl}/tasks/${id}`, payload, { headers: this.headers })
+    this.httpRequest
+      .put<Todo>(`${environment.apiUrl}/tasks/${id}`, payload)
       .subscribe({
         error: (err) => {
           console.error('Failed to toggle task', err);
@@ -74,7 +67,7 @@ export class Task {
     const previousTasks = this.tasks();
     this.tasks.update((tasks) => tasks.filter((t) => t.id !== id));
 
-    this.http.delete(`${environment.apiUrl}/tasks/${id}`, { headers: this.headers }).subscribe({
+    this.httpRequest.delete(`${environment.apiUrl}/tasks/${id}`).subscribe({
       error: (err) => {
         console.error('Failed to delete task', err);
         this.tasks.set(previousTasks);
@@ -90,8 +83,8 @@ export class Task {
 
     this.tasks.update((tasks) => tasks.map((t) => (t.id === id ? { ...t, ...payload } : t)));
 
-    this.http
-      .put<Todo>(`${environment.apiUrl}/tasks/${id}`, payload, { headers: this.headers })
+    this.httpRequest
+      .put<Todo>(`${environment.apiUrl}/tasks/${id}`, payload)
       .subscribe({
         error: (err) => {
           console.error('Failed to update task', err);
