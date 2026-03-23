@@ -2,12 +2,12 @@ import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Auth } from '../services/auth';
-import { RegisterModalComponent } from './register-modal.component';
+import { RegisterModal } from '../register-modal/register-modal';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, RegisterModalComponent],
+  imports: [FormsModule, RegisterModal],
   templateUrl: './login.html',
   styleUrls: ['./login.css'],
 })
