@@ -59,19 +59,8 @@ Sigue estos pasos para levantar la aplicación en tu entorno de desarrollo local
    cd api/functions
    npm run serve
    ```
-<<<<<<< HEAD
 
    Esto compilará el código TypeScript y ejecutará las funciones localmente (la terminal mostrará una URL similar a `http://127.0.0.1:5001/...`).
-=======
-   esto compilará el código TypeScript y ejecutará las funciones localmente (la terminal mostrará una URL similar a `http://127.0.0.1:5001/...`).
-
-   **Requisito de Variables de Entorno**:
-   Crea un archivo `.env` dentro de `api/functions/` con las URLs permitidas para CORS (las URLs de tu entorno local y hosting):
-   ```env
-   ALLOWED_ORIGINS=http://localhost:4200,https://tu-proyecto.web.app
-   ```
-
->>>>>>> 4382eb9 (feat: Configure Firebase hosting, implement dynamic CORS origin handling, and consolidate project configuration files.)
 
 3. **Configura el entorno de Angular**:
    Copia la URL local del emulador de funciones generada en el paso anterior y reemplázala en el archivo `web/src/environments/environment.development.ts`:
@@ -96,25 +85,31 @@ Sigue estos pasos para levantar la aplicación en tu entorno de desarrollo local
 Para desplegar la aplicación a producción en Firebase, sigue estos pasos:
 
 ### 1. Desplegar la API (Cloud Functions)
+
 Asegúrate de que tu archivo `api/functions/.env` tenga las URLs de producción correctas en `ALLOWED_ORIGINS`.
 
 ```bash
 cd api/functions
 npm run deploy
 ```
+
 Esto ejecutará el linter, compilará el proyecto y lo subirá a Firebase. La URL final de la API aparecerá en la consola (ej. `https://us-central1-tu-proyecto.cloudfunctions.net/api`).
 
 ### 2. Configurar Angular para Producción
+
 Actualiza el archivo `web/src/environments/environment.ts` con la URL de la API desplegada:
+
 ```typescript
 export const environment = {
   production: true,
-  apiUrl: 'https://us-central1-tu-proyecto.cloudfunctions.net/api'
+  apiUrl: "https://us-central1-tu-proyecto.cloudfunctions.net/api",
 };
 ```
 
 ### 3. Desplegar el Frontend (Firebase Hosting)
+
 Primero construye la aplicación Angular y luego despliégala.
+
 ```bash
 cd web
 npm run build
