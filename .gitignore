@@ -1,0 +1,68 @@
+# --- Global / System ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/mcp.json
+.history/*
+*.launch
+.project
+.classpath
+.settings/
+*.sublime-workspace
+
+# --- Logs & Debugging ---
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+firebase-debug.log*
+firebase-debug.*.log*
+testem.log
+libpeerconnection.log
+
+# --- Dependency Directories ---
+node_modules/
+bower_components/
+typings/
+
+# --- Environment Variables ---
+.env
+*.local
+
+# --- Firebase ---
+.firebase/
+.firebaserc
+.dataconnect/
+
+# --- Angular / Frontend (web/) ---
+web/dist/
+web/tmp/
+web/out-tsc/
+web/bazel-out/
+web/.angular/cache/
+web/.sass-cache/
+web/connect.lock
+web/coverage/
+web/__screenshots__/
+
+# --- Backend / Functions (api/functions/) ---
+api/functions/lib/
+api/functions/typings/
+
+# --- Build / Artifacts ---
+dist/
+coverage/
+.nyc_output/
+.grunt/
+build/Release/
+.npm/
+.eslintcache/
+.node_repl_history/
+*.tgz
+.yarn-integrity/
