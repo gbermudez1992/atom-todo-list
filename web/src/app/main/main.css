@@ -1,21 +1,36 @@
 .main-container {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 30px;
-  background: rgba(255, 255, 255, 0.05);
+  margin: var(--space-lg) var(--space-md);
+  padding: var(--space-lg) var(--space-md);
+  background: var(--glass-bg);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 var(--space-sm) 32px var(--shadow-main);
+}
+
+@media (min-width: 640px) {
+  .main-container {
+    max-width: 600px;
+    margin: var(--space-xxl) auto;
+    padding: var(--space-xl);
+  }
 }
 
 header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+@media (min-width: 480px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 h2 {
@@ -26,58 +41,73 @@ h2 {
 .user-info {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: var(--space-md);
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-muted);
 }
 
 .logout-btn {
   padding: 6px 12px;
-  background: rgba(255, 60, 60, 0.2);
-  color: #ff5e5e;
-  border: 1px solid rgba(255, 60, 60, 0.4);
+  background: var(--danger-btn-bg);
+  color: var(--danger);
+  border: 1px solid var(--danger-btn-hover);
 }
 .logout-btn:hover {
-  background: rgba(255, 60, 60, 0.4);
+  background: var(--danger-btn-hover);
 }
 
 .task-input {
   display: flex;
-  gap: 10px;
-  margin-bottom: 30px;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+@media (min-width: 480px) {
+  .task-input {
+    flex-direction: row;
+    gap: var(--space-sm);
+  }
 }
 
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-sm);
   flex: 1;
 }
 
 .task-input input {
   flex: 1;
   padding: 14px;
-  background: rgba(0, 0, 0, 0.2);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
+  background: var(--surface-base);
+  color: var(--text-main);
+  border: 1px solid var(--glass-border-focus);
+  border-radius: var(--radius-md);
   font-size: 16px;
 }
 .task-input input:focus {
   outline: none;
-  border-color: #00f2fe;
+  border-color: var(--primary-end);
 }
 
 .task-input button {
-  padding: 0 24px;
-  background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+  padding: 14px 24px;
+  background: linear-gradient(to right, var(--primary-start) 0%, var(--primary-end) 100%);
   color: #000;
   font-weight: 600;
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .task-input button {
+    width: auto;
+  }
 }
 
 .task-input button[disabled] {
-  background: rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.3);
+  background: var(--glass-border);
+  color: var(--surface-hover);
   cursor: not-allowed;
 }
 
@@ -87,34 +117,43 @@ h2 {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-sm);
 }
 
 .task-list li {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
   padding: 16px;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+  background: var(--surface-base);
+  border-radius: var(--radius-md);
   transition: background 0.2s;
 }
 
+@media (min-width: 520px) {
+  .task-list li {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
 .task-list li:hover {
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--surface-hover);
 }
 
 .task-content {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: var(--space-md);
   flex: 1;
 }
 
 .task-content input[type="checkbox"] {
   width: 20px;
   height: 20px;
-  accent-color: #00f2fe;
+  accent-color: var(--primary-end);
   cursor: pointer;
 }
 
@@ -125,11 +164,11 @@ h2 {
 
 .edit-input {
   flex: 1;
-  padding: 8px;
-  background: rgba(0, 0, 0, 0.4);
-  color: white;
-  border: 1px solid #4facfe;
-  border-radius: 4px;
+  padding: var(--space-sm);
+  background: var(--surface-input-bg);
+  color: var(--text-main);
+  border: 1px solid var(--primary-start);
+  border-radius: var(--radius-sm);
   font-size: 16px;
 }
 
@@ -151,13 +190,21 @@ h2 {
 
 .task-desc {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.6);
-  margin-top: 4px;
+  color: var(--text-dim);
+  margin-top: var(--space-xs);
 }
 
 .task-actions {
   display: flex;
-  gap: 8px;
+  gap: var(--space-sm);
+  width: 100%;
+  justify-content: flex-end;
+}
+
+@media (min-width: 520px) {
+  .task-actions {
+    width: auto;
+  }
 }
 
 .small-btn {
@@ -167,33 +214,33 @@ h2 {
 }
 
 .edit {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
+  background: var(--glass-border);
+  color: var(--text-main);
 }
-.edit:hover { background: rgba(255, 255, 255, 0.2); }
+.edit:hover { background: var(--glass-border-focus); }
 
 .delete {
-  background: rgba(255, 60, 60, 0.1);
-  color: #ff5e5e;
+  background: var(--danger-bg);
+  color: var(--danger);
 }
-.delete:hover { background: rgba(255, 60, 60, 0.2); }
+.delete:hover { background: var(--danger-hover); }
 
 .save {
-  background: rgba(74, 222, 128, 0.2);
-  color: #4ade80;
+  background: var(--success-bg);
+  color: var(--success);
 }
-.save:hover { background: rgba(74, 222, 128, 0.3); }
+.save:hover { background: var(--success-hover); }
 
 .cancel {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
+  background: var(--glass-border);
+  color: var(--text-main);
 }
-.cancel:hover { background: rgba(255, 255, 255, 0.2); }
+.cancel:hover { background: var(--glass-border-focus); }
 
 .empty-state {
   text-align: center;
-  padding: 40px !important;
-  color: rgba(255,255,255,0.4);
+  padding: var(--space-xxl) !important;
+  color: var(--text-dim);
   justify-content: center !important;
   background: transparent !important;
 }

@@ -1,13 +1,20 @@
 .login-container {
-  max-width: 400px;
-  margin: 15vh auto;
-  padding: 40px;
-  background: rgba(255, 255, 255, 0.05);
+  margin: 10vh var(--space-lg);
+  padding: var(--space-xl) var(--space-lg);
+  background: var(--glass-bg);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 var(--space-sm) 32px var(--shadow-main);
   text-align: center;
+}
+
+@media (min-width: 480px) {
+  .login-container {
+    max-width: 400px;
+    margin: 15vh auto;
+    padding: var(--space-xxl);
+  }
 }
 
 h2 {
@@ -18,37 +25,37 @@ h2 {
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: var(--space-lg);
   text-align: left;
 }
 
 label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: var(--space-sm);
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-muted);
 }
 
 input {
   width: 100%;
   padding: 14px;
-  background: rgba(0, 0, 0, 0.2);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
+  background: var(--surface-base);
+  color: var(--text-main);
+  border: 1px solid var(--glass-border-focus);
+  border-radius: var(--radius-md);
   font-size: 16px;
 }
 
 input:focus {
   outline: none;
-  border-color: #4facfe;
-  background: rgba(0, 0, 0, 0.4);
+  border-color: var(--primary-start);
+  background: var(--surface-input-bg);
 }
 
 button {
   width: 100%;
   padding: 14px;
-  background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+  background: linear-gradient(to right, var(--primary-start) 0%, var(--primary-end) 100%);
   color: #000;
   font-weight: 600;
   font-size: 16px;
@@ -56,7 +63,7 @@ button {
 }
 
 button[disabled] {
-  background: rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.3);
+  background: var(--glass-border);
+  color: var(--surface-hover);
   cursor: not-allowed;
 }
