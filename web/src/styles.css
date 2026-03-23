@@ -1,14 +1,59 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
+:root {
+  /* Colors */
+  --bg-gradient-start: #1e1e2f;
+  --bg-gradient-end: #12121c;
+  --text-main: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.7);
+  --text-dim: rgba(255, 255, 255, 0.4);
+  
+  --primary-start: #4facfe;
+  --primary-end: #00f2fe;
+  
+  --surface-base: rgba(0, 0, 0, 0.2);
+  --surface-hover: rgba(0, 0, 0, 0.3);
+  --surface-input-bg: rgba(0, 0, 0, 0.4);
+  
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-border-focus: rgba(255, 255, 255, 0.2);
+  
+  --shadow-main: rgba(0,0,0,0.3);
+  
+  --danger: #ff5e5e;
+  --danger-bg: rgba(255, 60, 60, 0.1);
+  --danger-hover: rgba(255, 60, 60, 0.2);
+  --danger-btn-bg: rgba(255, 60, 60, 0.2);
+  --danger-btn-hover: rgba(255, 60, 60, 0.4);
+  
+  --success: #4ade80;
+  --success-bg: rgba(74, 222, 128, 0.2);
+  --success-hover: rgba(74, 222, 128, 0.3);
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 15px;
+  --space-lg: 20px;
+  --space-xl: 30px;
+  --space-xxl: 40px;
+  
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+}
+
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100vh;
   font-family: 'Outfit', sans-serif;
-  background: linear-gradient(135deg, #1e1e2f 0%, #12121c 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+  color: var(--text-main);
 }
 
 * {
@@ -19,7 +64,7 @@ button {
   font-family: inherit;
   cursor: pointer;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   transition: all 0.2s ease-in-out;
 }
 
