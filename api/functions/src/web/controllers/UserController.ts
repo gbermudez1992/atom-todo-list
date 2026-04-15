@@ -23,11 +23,11 @@ export class UserController {
    */
   async login(req: express.Request, res: express.Response) {
     try {
-      const { email } = req.query;
+      const { email } = req.body;
       if (!email || typeof email !== "string") {
         return res
           .status(400)
-          .json({ error: "Email is required as a query parameter" });
+          .json({ error: "Email is required" });
       }
 
       const { user, token } = await this.userInteractor.login(email);

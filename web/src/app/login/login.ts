@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectorRef } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Auth } from '../services/auth';
@@ -16,7 +16,6 @@ export class Login {
   showRegisterModal = false;
   private auth = inject(Auth);
   private router = inject(Router);
-  private cdr = inject(ChangeDetectorRef);
 
   onSubmit() {
     if (this.email.trim()) {
@@ -25,7 +24,6 @@ export class Login {
         error: (err) => {
           if (err.status === 404) {
             this.showRegisterModal = true;
-            this.cdr.detectChanges();
           } else {
             console.error('Login failed', err);
           }

@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Auth } from '../services/auth';
@@ -8,7 +7,7 @@ import { Task, Todo } from '../services/task';
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule],
   templateUrl: './main.html',
   styleUrls: ['./main.css']
 })

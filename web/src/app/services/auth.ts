@@ -27,12 +27,11 @@ export class Auth {
   }
 
   login(email: string) {
-    return this.http.get<User>(`${environment.apiUrl}/users?email=${email}`).pipe(
+    return this.http.post<User>(`${environment.apiUrl}/users/login`, { email }).pipe(
       tap({
         next: (user: User) => {
           this.currentUser.set(user);
           localStorage.setItem('currentUser', JSON.stringify(user));
-          localStorage.setItem('token', user.token);
         },
       }),
       catchError((err: any) => {
@@ -53,7 +52,6 @@ export class Auth {
           next: (newUser: User) => {
             this.currentUser.set(newUser);
             localStorage.setItem('currentUser', JSON.stringify(newUser));
-            localStorage.setItem('token', newUser.token);
           },
         }),
         catchError((err: any) => {
@@ -65,7 +63,6 @@ export class Auth {
   logout() {
     this.currentUser.set(null);
     localStorage.removeItem('currentUser');
-    localStorage.removeItem('token');
   }
 
   isLoggedIn(): boolean {
@@ -73,6 +70,6 @@ export class Auth {
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return this.currentUser()?.token ?? null;
   }
 }
